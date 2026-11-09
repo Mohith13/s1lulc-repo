@@ -75,8 +75,7 @@ s1lulc/
                   temporal (smoothing, entropy), metrics (OA, IoU, F1)
   train.py        training loop      evaluate.py   evaluation and variant comparison
   plots.py        report figures     cli.py        `s1lulc` command
-notebooks/        01 build dataset (Colab), 02 train + evaluate (Kaggle), 03 prototype (Colab)
-  executed/       the same notebooks saved with their outputs (results, training curves)
+notebooks/        01 build dataset, 02 train + evaluate, 03 prototype (saved with outputs)
 tests/            unit tests + synthetic end-to-end pipeline test
 ```
 

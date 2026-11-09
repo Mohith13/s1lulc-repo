@@ -4,8 +4,8 @@ __pycache__/
 .ruff_cache/
 .venv/
 # data and model artefacts are distributed separately (Zenodo / Hugging Face / GitHub Release)
-data/
-outputs/
+/data/
+/outputs/
 *.tif
 *.pt
 *.ckpt
