@@ -7,7 +7,7 @@ name = "s1lulc"
 version = "0.2.2"
 description = "Sentinel-1-only land use / land cover segmentation and monthly change analysis"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = { text = "MIT" }
 authors = [{ name = "Mohith Paramesha" }]
 dependencies = [

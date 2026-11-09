@@ -80,7 +80,7 @@ tests/            unit tests + synthetic end-to-end pipeline test
 ```
 
 ## Setup
-Python 3.10+.
+Python 3.11+.
 ```bash
 pip install -e ".[dev]"                 # core + tests
 pip install -e ".[gee,geo]"             # Earth Engine + GeoTIFF support
