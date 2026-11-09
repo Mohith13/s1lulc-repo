@@ -1,0 +1,50 @@
+# Dataset regions. Each region is assigned WHOLE to one split, so no patch from a test region
+# is ever seen in training (avoids spatial-autocorrelation leakage).
+# Coordinates are the AOI centre: lon, lat (WGS84). Each AOI is 10 km x 10 km.
+regions:
+  # --- train ---------------------------------------------------------------
+  pilot_urban_milan:    {lon: 9.19,   lat: 45.46, split: train, note: "dense city"}
+  pilot_rural_ammersee: {lon: 11.12,  lat: 48.00, split: train, note: "lake, forest, farmland"}
+  paris:                {lon: 2.35,   lat: 48.86, split: train, note: "dense city"}
+  madrid:               {lon: -3.70,  lat: 40.42, split: train, note: "Mediterranean city"}
+  warsaw:               {lon: 21.01,  lat: 52.23, split: train, note: "continental city, river"}
+  athens:               {lon: 23.73,  lat: 37.98, split: train, note: "dry city, coast"}
+  beauce_farmland:      {lon: 1.50,   lat: 48.30, split: train, note: "intensive cropland"}
+  black_forest:         {lon: 8.10,   lat: 48.00, split: train, note: "forest, hilly terrain"}
+  camargue_wetland:     {lon: 4.60,   lat: 43.50, split: train, note: "wetland, lagoons"}
+  lake_balaton:         {lon: 17.75,  lat: 46.85, split: train, note: "large lake, cropland"}
+  po_delta:             {lon: 12.35,  lat: 44.95, split: train, note: "delta wetland"}
+  andalusia_dry:        {lon: -4.00,  lat: 37.60, split: train, note: "olive groves, shrub, bare"}
+  finland_lakes:        {lon: 25.70,  lat: 62.20, split: train, note: "boreal forest, lakes"}
+  scotland_highlands:   {lon: -4.90,  lat: 57.00, split: train, note: "grass, moss, steep terrain"}
+  flevoland_polder:     {lon: 5.50,   lat: 52.50, split: train, note: "polder cropland, water"}
+  hungary_plain:        {lon: 20.00,  lat: 47.20, split: train, note: "continental cropland"}
+  # --- train, second batch (added 2026-11-07 for the data-scaling experiment) --
+  lyon:                 {lon: 4.85,   lat: 45.76, split: train, note: "city, rivers"}
+  barcelona:            {lon: 2.17,   lat: 41.39, split: train, note: "coastal Mediterranean city"}
+  budapest:             {lon: 19.04,  lat: 47.50, split: train, note: "city, Danube"}
+  krakow:               {lon: 19.94,  lat: 50.06, split: train, note: "city, river, cropland"}
+  copenhagen:           {lon: 12.57,  lat: 55.68, split: train, note: "coastal city, sea"}
+  lisbon:               {lon: -9.14,  lat: 38.72, split: train, note: "coastal city, estuary"}
+  donana_wetland:       {lon: -6.40,  lat: 37.00, split: train, note: "marshland, dunes"}
+  biebrza_wetland:      {lon: 22.60,  lat: 53.40, split: train, note: "fen and peat wetland"}
+  shannon_grassland:    {lon: -8.00,  lat: 53.20, split: train, note: "grassland, bog"}
+  tabernas_bare:        {lon: -2.40,  lat: 37.05, split: train, note: "semi-desert, bare land"}
+  bardenas_bare:        {lon: -1.50,  lat: 42.20, split: train, note: "badlands, dry cropland"}
+  bucharest_plain:      {lon: 26.10,  lat: 44.43, split: train, note: "city edge, cropland"}
+  lithuania_forest:     {lon: 24.00,  lat: 55.00, split: train, note: "mixed forest, fields"}
+  swiss_alps:           {lon: 8.30,   lat: 46.80, split: train, note: "mountains, grass, forest"}
+  peloponnese_shrub:    {lon: 22.00,  lat: 37.30, split: train, note: "olive groves, shrubland"}
+  landes_forest:        {lon: -0.90,  lat: 44.20, split: train, note: "pine plantation, clearings"}
+  # --- validation (model selection only) -------------------------------------
+  vienna:               {lon: 16.37,  lat: 48.21, split: val, note: "city, Danube"}
+  brittany_rural:       {lon: -2.80,  lat: 48.20, split: val, note: "bocage, grassland"}
+  danube_delta:         {lon: 29.30,  lat: 45.15, split: val, note: "wetland, water"}
+  castilla_dry:         {lon: -3.00,  lat: 39.50, split: val, note: "dry cropland"}
+  # --- test, in-distribution (touched once, at the end) ---------------------
+  prague:               {lon: 14.42,  lat: 50.08, split: test, note: "city, river"}
+  tuscany:              {lon: 11.20,  lat: 43.30, split: test, note: "hills, mixed agriculture"}
+  sweden_forest:        {lon: 15.00,  lat: 59.50, split: test, note: "boreal forest, lakes"}
+  # --- test, out-of-distribution (climates unlike the training data) -----------
+  cairo_nile:           {lon: 31.24,  lat: 30.04, split: test_ood, note: "desert, irrigated crops, megacity"}
+  sao_paulo:            {lon: -46.63, lat: -23.55, split: test_ood, note: "tropical megacity, southern hemisphere"}

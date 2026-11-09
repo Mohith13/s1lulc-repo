@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "s1lulc"
+version = "0.2.2"
+description = "Sentinel-1-only land use / land cover segmentation and monthly change analysis"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Mohith Paramesha" }]
+dependencies = [
+    "numpy>=1.24",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+# Earth Engine access (dataset export, prototype data retrieval)
+gee = ["earthengine-api>=1.0"]
+# Reading / writing GeoTIFFs
+geo = ["rasterio>=1.3"]
+# Model training and inference
+train = [
+    "torch>=2.2",
+    "segmentation-models-pytorch>=0.3.3",
+    "torchgeo>=0.6",
+    "matplotlib>=3.7",
+]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[project.scripts]
+s1lulc = "s1lulc.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["s1lulc*"]
+
+[tool.setuptools.package-data]
+"s1lulc.prototype" = ["assets/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "NPY"]
+
+[tool.ruff.lint.per-file-ignores]
+"notebooks/*" = ["E401", "E741", "E501", "E402", "E701", "E702", "I001", "F401", "B905"]
+"tests/*" = ["E402"]
+"s1lulc/prototype/report.py" = ["E501"]   # embedded HTML/JS template

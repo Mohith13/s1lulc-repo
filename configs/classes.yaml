@@ -1,0 +1,39 @@
+# Target class scheme.
+# Seven classes that C-band SAR can plausibly separate. Raw WorldCover codes are kept in the
+# exported data; this mapping is applied in code, so changing it never requires a re-export.
+ignore_index: 255
+
+classes:
+  - {id: 0, name: tree_cover,      color: "#1b7837"}
+  - {id: 1, name: low_vegetation,  color: "#a6d96a"}   # shrubland, grassland, moss/lichen
+  - {id: 2, name: cropland,        color: "#f6e8a5"}
+  - {id: 3, name: built_up,        color: "#d7301f"}
+  - {id: 4, name: bare_sparse,     color: "#bdbdbd"}
+  - {id: 5, name: water,           color: "#2166ac"}
+  - {id: 6, name: wetland,         color: "#67a9cf"}   # herbaceous wetland, mangroves
+
+# ESA WorldCover 2021 v200 code -> target class id (codes not listed -> ignore_index)
+worldcover_to_target:
+  10: 0    # Tree cover
+  20: 1    # Shrubland
+  30: 1    # Grassland
+  40: 2    # Cropland
+  50: 3    # Built-up
+  60: 4    # Bare / sparse vegetation
+  70: 255  # Snow and ice -> ignored (too rare, and wet snow mimics water in SAR)
+  80: 5    # Permanent water bodies
+  90: 6    # Herbaceous wetland
+  95: 6    # Mangroves
+  100: 1   # Moss and lichen
+
+# Dynamic World V1 label -> target class id (independent comparison map, never used for training)
+dynamicworld_to_target:
+  0: 5     # water
+  1: 0     # trees
+  2: 1     # grass
+  3: 6     # flooded_vegetation
+  4: 2     # crops
+  5: 1     # shrub_and_scrub
+  6: 3     # built
+  7: 4     # bare
+  8: 255   # snow_and_ice

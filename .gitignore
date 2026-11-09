@@ -1,0 +1,15 @@
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.venv/
+# data and model artefacts are distributed separately (Zenodo / Hugging Face / GitHub Release)
+data/
+outputs/
+*.tif
+*.pt
+*.ckpt
+*.onnx
+# never commit credentials
+*.json.key
+credentials*.json

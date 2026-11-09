@@ -1,0 +1,21 @@
+# Monthly Sentinel-1 composite recipe.
+# Training data and the prototype both read THIS file, so they always prepare inputs the same
+# way. Any change must bump `version`; model bundles record the version they were trained with
+# and the prototype refuses to run a model on a different recipe.
+version: "1.0"
+
+collection: COPERNICUS/S1_GRD_FLOAT   # linear power; averaged in linear, converted to dB later
+instrument_mode: IW
+polarisations: [VV, VH]
+orbit_pass: both                      # both | ASCENDING | DESCENDING
+edge_mask_linear: 0.001               # mask pixels with VV <= -30 dB (residual border noise)
+reducer: mean                         # temporal mean in linear power = main speckle filter
+pixel_size_m: 10
+aoi_half_size_m: 5000                 # 10 km x 10 km area of interest
+
+# Label year for the training set (ESA WorldCover 2021 v200)
+training_year: 2021
+label_collection: ESA/WorldCover/v200
+
+# Model-input normalisation (statistics are computed from TRAINING regions only)
+db_clip_percentiles: [1, 99]

@@ -1,0 +1,40 @@
+# Training configuration. Every variant shares these settings; only the model differs, so
+# differences in results are attributable to the architecture / initialisation.
+seed: 42
+patch_size: 256
+samples_per_epoch: 3000          # random patches per epoch (drawn fresh every epoch)
+batch_size: 16
+num_workers: 4
+epochs: 50
+early_stopping_patience: 12      # epochs without val mIoU improvement
+val_months: null                 # null = all 12 months (stable model selection)
+optimizer:
+  lr: 1.0e-3                     # decoder / randomly initialised parts
+  encoder_lr_mult: 0.1           # pretrained encoders learn 10x slower (keep their features)
+  weight_decay: 1.0e-4
+  warmup_epochs: 2               # linear warm-up, then cosine decay to 1% of lr
+loss:
+  ce_weight: 1.0                 # cross-entropy with inverse-sqrt-frequency class weights
+  dice_weight: 1.0               # multiclass Dice: directly optimises overlap, helps rare classes
+sampling:
+  rare_crop_prob: 0.3
+  rare_threshold: 0.05           # classes below 5% of training pixels count as rare
+augment:
+  flip: true
+  rot90: true
+  gain_db: 1.0
+  noise_db: 0.5
+  noise_prob: 0.5
+inference:
+  tile: 256
+  overlap: 64
+
+# temporal_context k: the map for month t is predicted from months t-k .. t+k
+# (k = 0: single month, 2 channels; k = 1: three months, 6 channels).
+variants:
+  v1_r34_scratch:      {arch: unet, encoder: resnet34, weights: null}
+  v2_r50_imagenet:     {arch: unet, encoder: resnet50, weights: imagenet}
+  v3_r50_ssl4eo_s1:    {arch: unet, encoder: resnet50, weights: ssl4eo_s1}
+  v4_r34_scratch_t3:   {arch: unet, encoder: resnet34, weights: null, temporal_context: 1}
+  v5_r50_imagenet_t3:  {arch: unet, encoder: resnet50, weights: imagenet, temporal_context: 1}
+  v6_r50_ssl4eo_s1_t3: {arch: unet, encoder: resnet50, weights: ssl4eo_s1, temporal_context: 1}

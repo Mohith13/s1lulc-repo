@@ -1,0 +1,10 @@
+# Everything needed to run the prototype (and training). Install PyTorch first if you want a
+# CPU-only build:  pip install torch --index-url https://download.pytorch.org/whl/cpu
+# Versions are lower bounds tested with the versions in comments.
+numpy>=1.24                       # tested 2.5
+pyyaml>=6.0                       # tested 6.0.3
+earthengine-api>=1.0              # tested 1.7
+rasterio>=1.3                     # tested 1.5
+torch>=2.2                        # tested 2.11 (Kaggle), 2.15 (CPU)
+segmentation-models-pytorch>=0.3.3  # tested 0.6.0
+matplotlib>=3.7
