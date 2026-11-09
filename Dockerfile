@@ -10,7 +10,7 @@ FROM python:3.11-slim
 
 ENV PIP_NO_CACHE_DIR=1 PYTHONUNBUFFERED=1 MPLBACKEND=Agg
 WORKDIR /app
-RUN pip install torch --index-url https://download.pytorch.org/whl/cpu
+RUN pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
 COPY pyproject.toml README.md requirements.txt ./
 COPY configs configs
 COPY s1lulc s1lulc

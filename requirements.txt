@@ -1,5 +1,5 @@
 # Everything needed to run the prototype (and training). Install PyTorch first if you want a
-# CPU-only build:  pip install torch --index-url https://download.pytorch.org/whl/cpu
+# CPU-only build:  pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
 # Versions are lower bounds tested with the versions in comments.
 numpy>=1.24                       # tested 2.5
 pyyaml>=6.0                       # tested 6.0.3

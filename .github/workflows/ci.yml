@@ -19,7 +19,7 @@ jobs:
           cache: pip
       - name: Install (CPU PyTorch for the end-to-end pipeline test)
         run: |
-          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
           pip install -e ".[dev,geo]" segmentation-models-pytorch matplotlib
       - name: Lint
         run: ruff check .
