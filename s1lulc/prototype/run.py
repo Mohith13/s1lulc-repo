@@ -154,13 +154,18 @@ def run_prototype(lat: float, lon: float, start: str, bundle_dir: str | Path,
                   out_dir: str | Path, project: str | None = None,
                   cache_dir: str | Path | None = "cache", dynamic_world: bool = True,
                   config_dir: str | Path | None = None, **kw) -> dict:
+
+
+    # validate the input first: wrong input is reported without needing Earth Engine
+    validate_location(lat, lon)
+    months = analysis_window(start)
+
+
     import ee
 
     from ..gee.recipe import aoi_grid
     from .fetch import fetch_dynamic_world, fetch_s1
 
-    validate_location(lat, lon)
-    months = analysis_window(start)
     cfg = load_config(config_dir)
     ee.Initialize(project=project)
     grid = aoi_grid(lon, lat, cfg.recipe)
